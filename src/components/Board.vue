@@ -1,9 +1,17 @@
 <template>
   <div>
-    <div class="row">
-      <div class="cell">
-        <template v-if="item.live">
+    <div
+      :key="`row${rowIndex}`"
+      v-for="(row, rowIndex) in state.board"
+      class="row"
+    >
+      <div :key="cell.id" v-for="cell in row" class="cell">
+        <template v-if="cell.live">
           ■
+        </template>
+
+        <template v-if="!cell.live">
+          _
         </template>
       </div>
     </div>
@@ -11,15 +19,37 @@
 </template>
 
 <script>
-import useLifeGame from "../hooks/useLifeGame";
+import { onMounted } from "vue";
+import { useLifeGame } from "../hooks/useLifeGame";
 
 export default {
   setup() {
+    const { state, init, run, stop } = useLifeGame({
+      interval: 1000,
+      size: 16
+    });
+
+    onMounted(() => {
+      init();
+      run();
+    });
+
     return {
-      ...useLifeGame()
+      state,
+      init,
+      run,
+      stop
     };
   }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.row {
+  display: flex;
+}
+
+.cell {
+  line-height: 1;
+}
+</style>
