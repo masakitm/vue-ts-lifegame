@@ -1,3 +1,5 @@
+declare module 'useLifeGame'
+
 type Cell = {
   id: string;
   live: boolean;
