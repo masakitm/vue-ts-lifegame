@@ -8,19 +8,19 @@ import {
 
 describe("lifeGame", () => {
   it("row", () => {
-    expect().toMatch();
+    expect(createRow()).toMatch();
   });
 
   it("board", () => {
-    expect().toMatch();
+    expect(createBoard()).toMatch();
   });
 
   it("isNextCell", () => {
-    expect().toMatch();
+    expect(isNextCell()).toMatch();
   });
 
   it("getNeighboursLiveState", () => {
-    expect().toMatch();
+    expect(getNeighboursLiveState()).toMatch();
   });
 
   it("getNewLiveState", () => {
